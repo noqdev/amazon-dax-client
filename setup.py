@@ -80,7 +80,7 @@ install_requires = read_requirements("requirements.txt")
 tests_require = read_requirements('requirements-dev.txt')
 
 setup_params = dict(
-    name='amazon-dax-client',
+    name='noq-dax-client',
     version=find_version("amazondax", "__init__.py"),
     author='Amazon Web Services',
     packages=packages,
