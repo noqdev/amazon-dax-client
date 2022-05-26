@@ -1,0 +1,27 @@
+README
+======
+The code generator takes the model files (in models/) and constructs a working
+model. It then uses Jinja2 to pass that model to the templates (in templates/)
+and produces files in generated-src/. All of these directories can be changed
+but this is the basic structure that should be followed.
+
+Prep
+----
+Use pip to download the necessary modules:
+
+  cd codegen
+  python -m pip install -t ./.pip -r requirements.txt
+  cd ..
+
+This only has to be done once, after checkout.
+
+Run
+---
+To run the code generators, from the root of the DaxPythonClient checkout:
+
+  PYTHONPATH=codegen/.pip python3 codegen/codegen.py models templates amazondax/generated
+
+
+Results
+-------
+The geneated files will be in generated-src.

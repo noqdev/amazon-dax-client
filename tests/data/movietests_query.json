@@ -1,0 +1,636 @@
+{
+    "Query ExprAttrs": {
+        "request": {
+            "TableName": "Movies",
+            "KeyConditionExpression": "#Y = :y AND begins_with(#T, :t)",
+            "ExpressionAttributeNames": {
+                "#Y": "year",
+                "#T": "title"
+            },
+            "ExpressionAttributeValues": {
+                ":y": {"N": "1971"},
+                ":t": {"S": "The"}
+            },
+            "ReturnConsumedCapacity": "NONE"
+        },
+        "response": {
+            "Count": 3,
+            "Items": [{
+                "title": {"S": "The French Connection"},
+                "year": {"N": "1971"},
+                "info": {
+                    "M": {
+                        "plot": {
+                            "S": "A pair of NYC cops in the Narcotics Bureau stumble onto a drug smuggling job with a French connection."
+                        },
+                        "genres": {
+                            "L": [
+                                {"S": "Action"},
+                                {"S": "Crime"},
+                                {"S": "Thriller"}
+                            ]
+                        },
+                        "rating": {"N": "7.8"},
+                        "release_date": {"S": "1971-10-07T00:00:00Z"},
+                        "rank": {"N": "3540"},
+                        "running_time_secs": {"N": "6240"},
+                        "directors": {
+                            "L": [
+                                {"S": "William Friedkin"}
+                            ]
+                        },
+                        "actors": {
+                            "L": [
+                                {"S": "Gene Hackman"},
+                                {"S": "Roy Scheider"},
+                                {"S": "Fernando Rey"}
+                            ]
+                        },
+                        "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTY5Nzg5OTIzOF5BMl5BanBnXkFtZTcwMDI5NDA0MQ@@._V1_SX400_.jpg"}
+                    }
+                }
+            },
+            {
+                "title": {"S": "The Last Picture Show"},
+                "year": {"N": "1971"},
+                "info": {
+                    "M": {
+                        "plot": {
+                            "S": "A group of 50's high schoolers come of age in a bleak, isolated, atrophied West Texas town that is slowly dying, both economically and culturally."
+                        },
+                        "genres": {
+                            "L": [
+                                {"S": "Drama"}
+                            ]
+                        },
+                        "rating": {"N": "8"},
+                        "release_date": {"S": "1971-10-03T00:00:00Z"},
+                        "rank": {"N": "3402"},
+                        "running_time_secs": {"N": "7080"},
+                        "directors": {
+                            "L": [
+                                {"S": "Peter Bogdanovich"}
+                            ]
+                        },
+                        "actors": {
+                            "L": [
+                                {"S": "Timothy Bottoms"},
+                                {"S": "Jeff Bridges"},
+                                {"S": "Cybill Shepherd"}
+                            ]
+                        },
+                        "image_url": {
+                            "S": "http://ia.media-imdb.com/images/M/MV5BNDkyNzQ1NzYzN15BMl5BanBnXkFtZTcwNjE5MDEwNw@@._V1_SX400_.jpg"
+                        }
+                    }
+                }
+            },
+            {
+                "title": {"S": "The Omega Man"},
+                "year": {"N": "1971"},
+                "info": {
+                    "M": {
+                        "plot": {
+                            "S": "Army doctor Robert Neville struggles to create a cure for the plague that wiped out most of the human race."
+                        },
+                        "genres": {
+                            "L": [
+                                {"S": "Action"},
+                                {"S": "Sci-Fi"},
+                                {"S": "Thriller"}
+                            ]
+                        },
+                        "rating": {"N": "6.5"},
+                        "release_date": {"S": "1971-08-01T00:00:00Z"},
+                        "rank": {"N": "1750"},
+                        "running_time_secs": {"N": "5880"},
+                        "directors": {
+                            "L": [
+                                {"S": "Boris Sagal"}
+                            ]
+                        },
+                        "actors": {
+                            "L": [
+                                {"S": "Charlton Heston"},
+                                {"S": "Anthony Zerbe"},
+                                {"S": "Rosalind Cash"}
+                            ]
+                        },
+                        "image_url": {
+                            "S": "http://ia.media-imdb.com/images/M/MV5BMTMzMzI2MTM5NF5BMl5BanBnXkFtZTcwOTAyMTAwMQ@@._V1_SX400_.jpg"
+                        }
+                    }
+                }
+            }],
+            "ScannedCount": 3
+        }
+    },
+    "Query w/ Filter": {
+        "request": {
+            "TableName": "Movies",
+            "KeyConditionExpression": "#Y = :y AND begins_with(#T, :t)",
+            "FilterExpression": "contains(info.actors, :actor)",
+            "ExpressionAttributeNames": {
+                "#Y": "year",
+                "#T": "title"
+            },
+            "ExpressionAttributeValues": {
+                ":y": {"N": "1971"},
+                ":t": {"S": "The"},
+                ":actor": {"S": "Gene Hackman"}
+            },
+            "ReturnConsumedCapacity": "NONE"
+        },
+        "response": {
+            "Count": 1,
+            "Items": [{
+                "title": {"S": "The French Connection"},
+                "year": {"N": "1971"},
+                "info": {
+                    "M": {
+                        "plot": {
+                            "S": "A pair of NYC cops in the Narcotics Bureau stumble onto a drug smuggling job with a French connection."
+                        },
+                        "genres": {
+                            "L": [
+                                {"S": "Action"},
+                                {"S": "Crime"},
+                                {"S": "Thriller"}
+                            ]
+                        },
+                        "rating": {"N": "7.8"},
+                        "release_date": {"S": "1971-10-07T00:00:00Z"},
+                        "rank": {"N": "3540"},
+                        "running_time_secs": {"N": "6240"},
+                        "directors": {
+                            "L": [
+                                {"S": "William Friedkin"}
+                            ]
+                        },
+                        "actors": {
+                            "L": [
+                                {"S": "Gene Hackman"},
+                                {"S": "Roy Scheider"},
+                                {"S": "Fernando Rey"}
+                            ]
+                        },
+                        "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTY5Nzg5OTIzOF5BMl5BanBnXkFtZTcwMDI5NDA0MQ@@._V1_SX400_.jpg"}
+                    }
+                }
+            }],
+            "ScannedCount": 3
+        }
+    },
+    "Query w/ Projection": {
+        "request": {
+            "TableName": "Movies",
+            "KeyConditionExpression": "#Y = :y AND begins_with(#T, :t)",
+            "ProjectionExpression": "#T, #Y, info.rating",
+            "ExpressionAttributeNames": {
+                "#Y": "year",
+                "#T": "title"
+            },
+            "ExpressionAttributeValues": {
+                ":y": {"N": "1971"},
+                ":t": {"S": "The"}
+            },
+            "ReturnConsumedCapacity": "NONE"
+        },
+        "response": {
+            "Count": 3,
+            "Items": [{
+                "title": {"S": "The French Connection"},
+                "year": {"N": "1971"},
+                "info": {
+                    "M": {
+                        "rating": {"N": "7.8"}
+                    }
+                }
+            },
+            {
+                "title": {"S": "The Last Picture Show"},
+                "year": {"N": "1971"},
+                "info": {
+                    "M": {
+                        "rating": {"N": "8"}
+                    }
+                }
+            },
+            {
+                "title": {"S": "The Omega Man"},
+                "year": {"N": "1971"},
+                "info": {
+                    "M": {
+                        "rating": {"N": "6.5"}
+                    }
+                }
+            }],
+            "ScannedCount": 3
+        }
+    },
+    "Query w/ Filter + Projection": {
+        "request": {
+            "TableName": "Movies",
+            "KeyConditionExpression": "#Y = :y AND begins_with(#T, :t)",
+            "FilterExpression": "contains(info.actors, :actor)",
+            "ProjectionExpression": "#T, #Y, info.rating",
+            "ExpressionAttributeNames": {
+                "#Y": "year",
+                "#T": "title"
+            },
+            "ExpressionAttributeValues": {
+                ":y": {"N": "1971"},
+                ":t": {"S": "The"},
+                ":actor": {"S": "Gene Hackman"}
+            },
+            "ReturnConsumedCapacity": "NONE"
+        },
+        "response": {
+            "Count": 1,
+            "Items": [{
+                "title": {"S": "The French Connection"},
+                "year": {"N": "1971"},
+                "info": {
+                    "M": {
+                        "rating": {"N": "7.8"}
+                    }
+                }
+            }],
+            "ScannedCount": 3
+        }
+    },
+    "Query w/ Projection Reverse": {
+        "request": {
+            "TableName": "Movies",
+            "KeyConditionExpression": "#Y = :y AND begins_with(#T, :t)",
+            "ProjectionExpression": "#T, #Y, info.rating",
+            "ExpressionAttributeNames": {
+                "#Y": "year",
+                "#T": "title"
+            },
+            "ExpressionAttributeValues": {
+                ":y": {"N": "1972"},
+                ":t": {"S": "The"}
+            },
+            "ScanIndexForward": false,
+            "ReturnConsumedCapacity": "NONE"
+        },
+        "response": {
+            "Count": 3,
+            "Items": [
+                {
+                    "info": {
+                        "M": {
+                            "rating": {
+                                "N": "7"
+                            }
+                        }
+                    },
+                    "title": {
+                        "S": "The Poseidon Adventure"
+                    },
+                    "year": {
+                        "N": "1972"
+                    }
+                },
+                {
+                    "info": {
+                        "M": {
+                            "rating": {
+                                "N": "5.9"
+                            }
+                        }
+                    },
+                    "title": {
+                        "S": "The Last House on the Left"
+                    },
+                    "year": {
+                        "N": "1972"
+                    }
+                },
+                {
+                    "info": {
+                        "M": {
+                            "rating": {
+                                "N": "9.2"
+                            }
+                        }
+                    },
+                    "title": {
+                        "S": "The Godfather"
+                    },
+                    "year": {
+                        "N": "1972"
+                    }
+                }
+            ],
+            "ScannedCount": 3
+        }
+    },
+    "Query Select Count": {
+        "request": {
+            "TableName": "Movies",
+            "KeyConditionExpression": "#Y = :y AND begins_with(#T, :t)",
+            "ExpressionAttributeNames": {
+                "#Y": "year",
+                "#T": "title"
+            },
+            "ExpressionAttributeValues": {
+                ":y": {"N": "1971"},
+                ":t": {"S": "The"}
+            },
+            "Select": "COUNT",
+            "ReturnConsumedCapacity": "NONE"
+        },
+        "response": {
+            "Count": 3,
+            "ScannedCount": 3
+        }
+    },
+    "Query Paged": {
+        "__skip__": "ddblocal",
+        "calls": [{
+            "request": {
+                "TableName": "Movies",
+                "KeyConditionExpression": "#Y = :y AND begins_with(#T, :t)",
+                "ExpressionAttributeNames": {
+                    "#Y": "year",
+                    "#T": "title"
+                },
+                "ExpressionAttributeValues": {
+                    ":y": {"N": "1971"},
+                    ":t": {"S": "The"}
+                },
+                "Limit": 2,
+                "ReturnConsumedCapacity": "NONE"
+            },
+            "response": {
+                "Count": 2,
+                "Items": [{
+                    "title": {"S": "The French Connection"},
+                    "year": {"N": "1971"},
+                    "info": {
+                        "M": {
+                            "plot": {
+                                "S": "A pair of NYC cops in the Narcotics Bureau stumble onto a drug smuggling job with a French connection."
+                            },
+                            "genres": {
+                                "L": [
+                                    {"S": "Action"},
+                                    {"S": "Crime"},
+                                    {"S": "Thriller"}
+                                ]
+                            },
+                            "rating": {"N": "7.8"},
+                            "release_date": {"S": "1971-10-07T00:00:00Z"},
+                            "rank": {"N": "3540"},
+                            "running_time_secs": {"N": "6240"},
+                            "directors": {
+                                "L": [
+                                    {"S": "William Friedkin"}
+                                ]
+                            },
+                            "actors": {
+                                "L": [
+                                    {"S": "Gene Hackman"},
+                                    {"S": "Roy Scheider"},
+                                    {"S": "Fernando Rey"}
+                                ]
+                            },
+                            "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTY5Nzg5OTIzOF5BMl5BanBnXkFtZTcwMDI5NDA0MQ@@._V1_SX400_.jpg"}
+                        }
+                    }
+                },
+                {
+                    "title": {"S": "The Last Picture Show"},
+                    "year": {"N": "1971"},
+                    "info": {
+                        "M": {
+                            "plot": {
+                                "S": "A group of 50's high schoolers come of age in a bleak, isolated, atrophied West Texas town that is slowly dying, both economically and culturally."
+                            },
+                            "genres": {
+                                "L": [
+                                    {"S": "Drama"}
+                                ]
+                            },
+                            "rating": {"N": "8"},
+                            "release_date": {"S": "1971-10-03T00:00:00Z"},
+                            "rank": {"N": "3402"},
+                            "running_time_secs": {"N": "7080"},
+                            "directors": {
+                                "L": [
+                                    {"S": "Peter Bogdanovich"}
+                                ]
+                            },
+                            "actors": {
+                                "L": [
+                                    {"S": "Timothy Bottoms"},
+                                    {"S": "Jeff Bridges"},
+                                    {"S": "Cybill Shepherd"}
+                                ]
+                            },
+                            "image_url": {
+                                "S": "http://ia.media-imdb.com/images/M/MV5BNDkyNzQ1NzYzN15BMl5BanBnXkFtZTcwNjE5MDEwNw@@._V1_SX400_.jpg"
+                            }
+                        }
+                    }
+                }],
+                "LastEvaluatedKey": {
+                    "title": {"S": "The Last Picture Show"},
+                    "year": {"N": "1971"}
+                },
+                "ScannedCount": 2
+            }
+        },
+        {
+            "request": {
+                "TableName": "Movies",
+                "KeyConditionExpression": "#Y = :y AND begins_with(#T, :t)",
+                "ExpressionAttributeNames": {
+                    "#Y": "year",
+                    "#T": "title"
+                },
+                "ExpressionAttributeValues": {
+                    ":y": {"N": "1971"},
+                    ":t": {"S": "The"}
+                },
+                "Limit": 1,
+                "ExclusiveStartKey": {
+                    "title": {"S": "The Last Picture Show"},
+                    "year": {"N": "1971"}
+                },
+                "ReturnConsumedCapacity": "NONE"
+            },
+            "response": {
+                "Count": 1,
+                "Items": [{
+                    "title": {"S": "The Omega Man"},
+                    "year": {"N": "1971"},
+                    "info": {
+                        "M": {
+                            "plot": {
+                                "S": "Army doctor Robert Neville struggles to create a cure for the plague that wiped out most of the human race."
+                            },
+                            "genres": {
+                                "L": [
+                                    {"S": "Action"},
+                                    {"S": "Sci-Fi"},
+                                    {"S": "Thriller"}
+                                ]
+                            },
+                            "rating": {"N": "6.5"},
+                            "release_date": {"S": "1971-08-01T00:00:00Z"},
+                            "rank": {"N": "1750"},
+                            "running_time_secs": {"N": "5880"},
+                            "directors": {
+                                "L": [
+                                    {"S": "Boris Sagal"}
+                                ]
+                            },
+                            "actors": {
+                                "L": [
+                                    {"S": "Charlton Heston"},
+                                    {"S": "Anthony Zerbe"},
+                                    {"S": "Rosalind Cash"}
+                                ]
+                            },
+                            "image_url": {
+                                "S": "http://ia.media-imdb.com/images/M/MV5BMTMzMzI2MTM5NF5BMl5BanBnXkFtZTcwOTAyMTAwMQ@@._V1_SX400_.jpg"
+                            }
+                        }
+                    }
+                }],
+                "ScannedCount": 1
+            }
+        }]
+    },
+    "Query Index": {
+        "request": {
+            "TableName": "Movies",
+            "IndexName": "ExampleLSI",
+            "KeyConditionExpression": "#Y = :y AND begins_with(#T, :t)",
+            "ExpressionAttributeNames": {
+                "#Y": "year",
+                "#T": "title"
+            },
+            "ExpressionAttributeValues": {
+                ":y": {"N": "1971"},
+                ":t": {"S": "The"}
+            },
+            "ReturnConsumedCapacity": "NONE"
+        },
+        "response": {
+            "Count": 3,
+            "Items": [{
+                "title": {"S": "The French Connection"},
+                "year": {"N": "1971"},
+                "info": {
+                    "M": {
+                        "plot": {
+                            "S": "A pair of NYC cops in the Narcotics Bureau stumble onto a drug smuggling job with a French connection."
+                        },
+                        "genres": {
+                            "L": [
+                                {"S": "Action"},
+                                {"S": "Crime"},
+                                {"S": "Thriller"}
+                            ]
+                        },
+                        "rating": {"N": "7.8"},
+                        "release_date": {"S": "1971-10-07T00:00:00Z"},
+                        "rank": {"N": "3540"},
+                        "running_time_secs": {"N": "6240"},
+                        "directors": {
+                            "L": [
+                                {"S": "William Friedkin"}
+                            ]
+                        },
+                        "actors": {
+                            "L": [
+                                {"S": "Gene Hackman"},
+                                {"S": "Roy Scheider"},
+                                {"S": "Fernando Rey"}
+                            ]
+                        },
+                        "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTY5Nzg5OTIzOF5BMl5BanBnXkFtZTcwMDI5NDA0MQ@@._V1_SX400_.jpg"}
+                    }
+                }
+            },
+            {
+                "title": {"S": "The Last Picture Show"},
+                "year": {"N": "1971"},
+                "info": {
+                    "M": {
+                        "plot": {
+                            "S": "A group of 50's high schoolers come of age in a bleak, isolated, atrophied West Texas town that is slowly dying, both economically and culturally."
+                        },
+                        "genres": {
+                            "L": [
+                                {"S": "Drama"}
+                            ]
+                        },
+                        "rating": {"N": "8"},
+                        "release_date": {"S": "1971-10-03T00:00:00Z"},
+                        "rank": {"N": "3402"},
+                        "running_time_secs": {"N": "7080"},
+                        "directors": {
+                            "L": [
+                                {"S": "Peter Bogdanovich"}
+                            ]
+                        },
+                        "actors": {
+                            "L": [
+                                {"S": "Timothy Bottoms"},
+                                {"S": "Jeff Bridges"},
+                                {"S": "Cybill Shepherd"}
+                            ]
+                        },
+                        "image_url": {
+                            "S": "http://ia.media-imdb.com/images/M/MV5BNDkyNzQ1NzYzN15BMl5BanBnXkFtZTcwNjE5MDEwNw@@._V1_SX400_.jpg"
+                        }
+                    }
+                }
+            },
+            {
+                "title": {"S": "The Omega Man"},
+                "year": {"N": "1971"},
+                "info": {
+                    "M": {
+                        "plot": {
+                            "S": "Army doctor Robert Neville struggles to create a cure for the plague that wiped out most of the human race."
+                        },
+                        "genres": {
+                            "L": [
+                                {"S": "Action"},
+                                {"S": "Sci-Fi"},
+                                {"S": "Thriller"}
+                            ]
+                        },
+                        "rating": {"N": "6.5"},
+                        "release_date": {"S": "1971-08-01T00:00:00Z"},
+                        "rank": {"N": "1750"},
+                        "running_time_secs": {"N": "5880"},
+                        "directors": {
+                            "L": [
+                                {"S": "Boris Sagal"}
+                            ]
+                        },
+                        "actors": {
+                            "L": [
+                                {"S": "Charlton Heston"},
+                                {"S": "Anthony Zerbe"},
+                                {"S": "Rosalind Cash"}
+                            ]
+                        },
+                        "image_url": {
+                            "S": "http://ia.media-imdb.com/images/M/MV5BMTMzMzI2MTM5NF5BMl5BanBnXkFtZTcwOTAyMTAwMQ@@._V1_SX400_.jpg"
+                        }
+                    }
+                }
+            }],
+            "ScannedCount": 3
+        }
+    }
+}
+

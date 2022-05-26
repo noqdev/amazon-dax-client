@@ -1,0 +1,13 @@
+# Pylint configuration for Python2. Identical to Python3, except exclude
+# the amazondax.grammar module which is Python3 code (amazondax.grammar2
+# is the Python2 equivalent).
+
+[MASTER]
+ignore=.git,tests,codegen,grammar
+
+[MESSAGES CONTROL]
+disable=all
+enable=E
+
+[TYPECHECK]
+ignored-classes=_socketobject

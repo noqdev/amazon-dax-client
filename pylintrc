@@ -1,0 +1,11 @@
+# Pylint configuration for Python3.
+
+[MASTER]
+ignore=.git,tests,codegen
+
+# Why raise-missing-from is disabled: 
+# This package is used for both Python 2.x and Python 3.x. The `raise` keyword doesn't exist in Python2.x. 
+# If we address this pylint rule for python3.x, then python 2.x will fail to compile.
+
+[MESSAGES CONTROL]
+disable=C,R,no-absolute-import,fixme,protected-access,raise-missing-from

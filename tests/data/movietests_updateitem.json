@@ -1,0 +1,134 @@
+{
+    "__default_table__": "WriteMovies",
+    "Update Item": {
+        "request": {
+            "Key": {
+                "year": {"N": "1995"},
+                "title": {"S": "Apollo 13"}
+            },
+            "UpdateExpression": "SET info.rating = :rating",
+            "ExpressionAttributeValues": {
+                ":rating": {"N": "9.0"}
+            }
+        },
+        "response": {
+        }
+    },
+    "Update Item Bad Expression": {
+        "request": {
+            "Key": {
+                "year": {"N": "1995"},
+                "title": {"S": "Apollo 13"}
+            },
+            "UpdateExpression": "SET info.rating = 9.0"
+        },
+        "error": "ValidationException"
+    },
+    "Update Item Conditional": {
+        "request": {
+            "Key": {
+                "year": {"N": "1984"},
+                "title": {"S": "This Is Spinal Tap"}
+            },
+            "UpdateExpression": "SET info.rating = :rating",
+            "ExpressionAttributeValues": {
+                ":rating": {"N": "11"}
+            },
+            "ConditionExpression": "info.rating < :rating",
+            "ReturnValues": "UPDATED_NEW"
+        },
+        "response": {
+            "Attributes": {
+                "info": {"M": {
+                    "actors": {
+                        "L": [
+                            {"S": "Rob Reiner"},
+                            {"S": "Michael McKean"},
+                            {"S": "Christopher Guest"}
+                        ]
+                    },
+                    "directors": {
+                        "L": [{"S": "Rob Reiner"}]
+                    },
+                    "genres": {
+                        "L": [{"S": "Comedy"}, {"S": "Music"}]
+                    },
+                    "image_url": {
+                        "S": "http://ia.media-imdb.com/images/M/MV5BMTMxNDgzMzc2MF5BMl5BanBnXkFtZTcwNzgyMzY3NA@@._V1_SX400_.jpg"
+                    },
+                    "plot": {
+                        "S": "Spinal Tap, the world's loudest band, is chronicled by hack documentarian Marty DeBergi on what proves to be a fateful tour."
+                    },
+                    "rank": {"N": "1753"},
+                    "rating": {"N": "11"},
+                    "release_date": {"S": "1984-03-02T00:00:00Z"},
+                    "running_time_secs": {"N": "4920"}
+                }}
+            }
+        }
+    },
+    "Update Item Conditional Replay": {
+        "request": {
+            "Key": {
+                "year": {"N": "1984"},
+                "title": {"S": "This Is Spinal Tap"}
+            },
+            "UpdateExpression": "SET info.rating = :rating",
+            "ExpressionAttributeValues": {
+                ":rating": {"N": "11"}
+            },
+            "ConditionExpression": "info.rating = :rating",
+            "ReturnValues": "UPDATED_NEW"
+        },
+        "response": {
+            "Attributes": {}
+        }
+    },
+    "Update Item Conditional ALL": {
+        "request": {
+            "Key": {
+                "year": {"N": "1984"},
+                "title": {"S": "This Is Spinal Tap"}
+            },
+            "UpdateExpression": "SET info.rating = :rating",
+            "ExpressionAttributeValues": {
+                ":rating": {"N": "7"}
+            },
+            "ConditionExpression": "info.rating > :rating",
+            "ReturnValues": "ALL_NEW"
+        },
+        "response": {
+            "Attributes": {
+                "year": {"N": "1984"},
+                "title": {"S": "This Is Spinal Tap"},
+                "info": {"M": {
+                    "actors": {
+                        "L": [
+                            {"S": "Rob Reiner"},
+                            {"S": "Michael McKean"},
+                            {"S": "Christopher Guest"}
+                        ]
+                    },
+                    "directors": {
+                        "L": [{"S": "Rob Reiner"}]
+                    },
+                    "genres": {
+                        "L": [{"S": "Comedy"}, {"S": "Music"}]
+                    },
+                    "image_url": {
+                        "S": "http://ia.media-imdb.com/images/M/MV5BMTMxNDgzMzc2MF5BMl5BanBnXkFtZTcwNzgyMzY3NA@@._V1_SX400_.jpg"
+                    },
+                    "plot": {
+                        "S": "Spinal Tap, the world's loudest band, is chronicled by hack documentarian Marty DeBergi on what proves to be a fateful tour."
+                    },
+                    "rank": {"N": "1753"},
+                    "rating": {"N": "7"},
+                    "release_date": {"S": "1984-03-02T00:00:00Z"},
+                    "running_time_secs": {"N": "4920"}
+                }}
+            }
+        }
+    }
+}
+
+

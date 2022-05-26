@@ -1,0 +1,564 @@
+{
+  "remoteMethods": {
+    "authorizeConnection_1489122155_1_Id": {
+      "serviceId": "1",
+      "name": "authorizeConnection",
+      "methodId": "1489122155",
+      "prettyMethodId": "1489122155",
+      "asynchronous": true,
+      "authMethod": true,
+      "parameters": {
+        "accessKeyId": {
+          "typeName": "String",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "signature": {
+          "typeName": "String",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "stringToSign": {
+          "typeName": "byte[]",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "sessionToken": {
+          "typeName": "String",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "userAgent": {
+          "typeName": "String",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": false,
+          "isEncodedKey": false
+        }
+      },
+      "returnType": null,
+      "internalMethod": true
+    },
+    "batchGetItem_N697851100_1_Id": {
+      "serviceId": "1",
+      "name": "batchGetItem",
+      "methodId": "-697851100",
+      "prettyMethodId": "N697851100",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {
+        "getItemKeys": {
+          "typeName": "Map",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false,
+          "customEncoding": true
+        },
+        "kwargs": {
+          "typeName": "EnumMap",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false,
+          "enumMapKeyName": "DaxDataRequestParam"
+        }
+      },
+      "returnType": null,
+      "customPrepare": true,
+      "customResponse": true
+    },
+    "batchWriteItem_116217951_1_Id": {
+      "serviceId": "1",
+      "name": "batchWriteItem",
+      "methodId": "116217951",
+      "prettyMethodId": "116217951",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {
+        "keyValuesByTable": {
+          "typeName": "Map",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false,
+          "customEncoding": true
+        },
+        "kwargs": {
+          "typeName": "EnumMap",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false,
+          "enumMapKeyName": "DaxDataRequestParam"
+        }
+      },
+      "returnType": null,
+      "customPrepare": true,
+      "customResponse": true
+    },
+    "defineAttributeList_670678385_1_Id": {
+      "serviceId": "1",
+      "name": "defineAttributeList",
+      "methodId": "670678385",
+      "prettyMethodId": "670678385",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {
+        "attributeListId": {
+          "typeName": "long",
+          "nullable": false,
+          "primitive": true,
+          "rawCbor": false,
+          "isTableName": false,
+          "isEncodedKey": false
+        }
+      },
+      "returnType": null,
+      "internalMethod": true
+    },
+    "defineAttributeListId_N1230579644_1_Id": {
+      "serviceId": "1",
+      "name": "defineAttributeListId",
+      "methodId": "-1230579644",
+      "prettyMethodId": "N1230579644",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {
+        "attributeNames": {
+          "typeName": "Collection",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": false,
+          "isEncodedKey": false
+        }
+      },
+      "returnType": null,
+      "internalMethod": true
+    },
+    "defineKeySchema_N742646399_1_Id": {
+      "serviceId": "1",
+      "name": "defineKeySchema",
+      "methodId": "-742646399",
+      "prettyMethodId": "N742646399",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {
+        "tableName": {
+          "typeName": "byte[]",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": true,
+          "isEncodedKey": false
+        }
+      },
+      "returnType": null,
+      "internalMethod": true
+    },
+    "deleteItem_1013539361_1_Id": {
+      "serviceId": "1",
+      "name": "deleteItem",
+      "methodId": "1013539361",
+      "prettyMethodId": "1013539361",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {
+        "tableName": {
+          "typeName": "byte[]",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": true,
+          "isEncodedKey": false
+        },
+        "cborKey": {
+          "typeName": "byte[]",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": false,
+          "isEncodedKey": true
+        },
+        "kwargs": {
+          "typeName": "EnumMap",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false,
+          "enumMapKeyName": "DaxDataRequestParam"
+        }
+      },
+      "returnType": null
+    },
+    "endpoints_455855874_1_Id": {
+      "serviceId": "1",
+      "name": "endpoints",
+      "methodId": "455855874",
+      "prettyMethodId": "455855874",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {},
+      "returnType": null,
+      "internalMethod": true
+    },
+    "getItem_263244906_1_Id": {
+      "serviceId": "1",
+      "name": "getItem",
+      "methodId": "263244906",
+      "prettyMethodId": "263244906",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {
+        "tableName": {
+          "typeName": "byte[]",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": true,
+          "isEncodedKey": false
+        },
+        "key": {
+          "typeName": "byte[]",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "kwargs": {
+          "typeName": "EnumMap",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false,
+          "enumMapKeyName": "DaxDataRequestParam"
+        }
+      },
+      "returnType": null
+    },
+    "methods_785068263_1_Id": {
+      "serviceId": "1",
+      "name": "methods",
+      "methodId": "785068263",
+      "prettyMethodId": "785068263",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {
+        "serviceId": {
+          "typeName": "int",
+          "nullable": false,
+          "primitive": true,
+          "rawCbor": false,
+          "isTableName": false,
+          "isEncodedKey": false
+        }
+      },
+      "returnType": null
+    },
+    "putItem_N2106490455_1_Id": {
+      "serviceId": "1",
+      "name": "putItem",
+      "methodId": "-2106490455",
+      "prettyMethodId": "N2106490455",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {
+        "tableName": {
+          "typeName": "byte[]",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": true,
+          "isEncodedKey": false
+        },
+        "cborKey": {
+          "typeName": "byte[]",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": false,
+          "isEncodedKey": true
+        },
+        "cborValue": {
+          "typeName": "byte[]",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "kwargs": {
+          "typeName": "EnumMap",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false,
+          "enumMapKeyName": "DaxDataRequestParam"
+        }
+      },
+      "returnType": null
+    },
+    "query_N931250863_1_Id": {
+      "serviceId": "1",
+      "name": "query",
+      "methodId": "-931250863",
+      "prettyMethodId": "N931250863",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {
+        "tableName": {
+          "typeName": "byte[]",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": true,
+          "isEncodedKey": false
+        },
+        "keyConditionExpression": {
+          "typeName": "byte[]",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "kwargs": {
+          "typeName": "EnumMap",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false,
+          "enumMapKeyName": "DaxDataRequestParam"
+        }
+      },
+      "returnType": null,
+      "hasKey": true
+    },
+    "scan_N1875390620_1_Id": {
+      "serviceId": "1",
+      "name": "scan",
+      "methodId": "-1875390620",
+      "prettyMethodId": "N1875390620",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {
+        "tableName": {
+          "typeName": "byte[]",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": true,
+          "isEncodedKey": false
+        },
+        "kwargs": {
+          "typeName": "EnumMap",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false,
+          "enumMapKeyName": "DaxDataRequestParam"
+        }
+      },
+      "returnType": null,
+      "hasKey": true
+    },
+    "services_N1016793520_1_Id": {
+      "serviceId": "1",
+      "name": "services",
+      "methodId": "-1016793520",
+      "prettyMethodId": "N1016793520",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {},
+      "returnType": null
+    },
+    "transactGetItems_1866287579_1_Id": {
+      "serviceId": "1",
+      "name": "transactGetItems",
+      "methodId": "1866287579",
+      "prettyMethodId": "1866287579",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {
+        "tableNames": {
+          "typeName": "Collection",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "keys": {
+          "typeName": "Collection",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "projectionExpressions": {
+          "typeName": "Collection",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "kwargs": {
+          "typeName": "EnumMap",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false,
+          "enumMapKeyName": "DaxDataRequestParam"
+        }
+      },
+      "returnType": null
+    },
+    "transactWriteItems_N1160037738_1_Id": {
+      "serviceId": "1",
+      "name": "transactWriteItems",
+      "methodId": "-1160037738",
+      "prettyMethodId": "N1160037738",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {
+        "operations": {
+          "typeName": "Collection",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "tableNames": {
+          "typeName": "Collection",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "keys": {
+          "typeName": "Collection",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "values": {
+          "typeName": "Collection",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "returnValues": {
+          "typeName": "Collection",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "returnValuesOnConditionCheckFailure": {
+          "typeName": "Collection",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "conditionExpressions": {
+          "typeName": "Collection",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "updateExpressions": {
+          "typeName": "Collection",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false
+        },
+        "kwargs": {
+          "typeName": "EnumMap",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false,
+          "enumMapKeyName": "DaxDataRequestParam"
+        }
+      },
+      "returnType": null
+    },
+    "updateItem_1425579023_1_Id": {
+      "serviceId": "1",
+      "name": "updateItem",
+      "methodId": "1425579023",
+      "prettyMethodId": "1425579023",
+      "asynchronous": false,
+      "authMethod": false,
+      "parameters": {
+        "tableName": {
+          "typeName": "byte[]",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": true,
+          "isEncodedKey": false
+        },
+        "cborKey": {
+          "typeName": "byte[]",
+          "nullable": false,
+          "primitive": false,
+          "rawCbor": false,
+          "isTableName": false,
+          "isEncodedKey": true
+        },
+        "kwargs": {
+          "typeName": "EnumMap",
+          "nullable": true,
+          "primitive": false,
+          "rawCbor": true,
+          "isTableName": false,
+          "isEncodedKey": false,
+          "enumMapKeyName": "DaxDataRequestParam"
+        }
+      },
+      "returnType": null
+    }
+  }
+}

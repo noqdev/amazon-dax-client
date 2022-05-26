@@ -1,0 +1,131 @@
+<#
+ # Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ #
+ # Licensed under the Apache License, Version 2.0 (the "License"). You may not
+ # use this file except in compliance with the License. A copy of the License
+ # is located at
+ #
+ #    http://aws.amazon.com/apache2.0/
+ #
+ # or in the "license" file accompanying this file. This file is distributed on
+ # an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+ # express or implied. See the License for the specific language governing
+ # permissions and limitations under the License.
+ #>
+<% from 'Common.jinja' import method_name, stub_params, param_name %>
+#
+#  Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License"). You may not
+#  use this file except in compliance with the License. A copy of the License
+#  is located at
+#
+#     http://aws.amazon.com/apache2.0/
+#
+#  or in the "license" file accompanying this file. This file is distributed on
+#  an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
+#  express or implied. See the License for the specific language governing
+#  permissions and limitations under the License.
+#
+from .. import Constants, AttributeValueEncoder
+
+<% macro write_param(param) %>
+<% if param.is_table_name and not param.op.is_internal %>
+tube.write_binary(request.TableName)
+<% elif param.is_key %>
+tube.write_binary(AttributeValueEncoder.encode_key(request.<<param.op.key_param>>, request.key_schema))
+<% elif param.is_values %>
+tube.write_binary(AttributeValueEncoder.encode_values(request.Item, request.key_schema, request.attr_names, request.attr_list_id))
+<% elif param.is_keycond_expr %>
+expressions = AttributeValueEncoder.encode_key_condition_expression_direct(tube.enc, request)
+<% elif param.is_kwargs %>
+
+has_kwargs = (<<param.op.optional_args|list_strformat('("{_.name}" in request)')|join(' or \n        ')>>)
+if has_kwargs:
+    tube.enc.append_map_stream_header()
+<% for arg, argtype in param.op.optional_nonexpr_args %>
+    << stub_write_kwarg(arg, argtype) | indent>>
+
+<% endfor %>
+<% if param.op.has_expression %>
+    # This operation has expressions, so deal with those together
+<% if not param.op.has_keycond_expression %>
+    AttributeValueEncoder.encode_expressions_direct(tube.enc, request)
+<% else %>
+    # For Query, the expressions are already eval'd for KeyCondExpr
+    AttributeValueEncoder.write_expressions_direct(tube.enc, expressions, request)
+<% endif %>
+<% endif %>
+
+    tube.enc.append_break()
+else:
+    tube.write_null()
+<% else %>
+<% if param.nullable and not param.use_custom_encoding %>
+if <<param_name(param)>> is None:
+    tube.write_null()
+else:
+    << stub_write_regular_param(param) >>
+<% else %>
+<< stub_write_regular_param(param) >>
+<% endif %>
+<% endif %>
+<% endmacro %>
+
+<% macro stub_write_regular_param(param) %>
+<% if param.use_custom_encoding %>
+AttributeValueEncoder.encode_<<method_name(param.op)>>_<<param.name>>_direct(tube.enc, request)
+<% elif param.type == 'String' %>
+tube.write_string(<<param_name(param)>>)
+<% elif param.type == 'byte[]' %>
+tube.write_binary(<<param_name(param)>>)
+<% elif param.type == 'long' %>
+tube.write_int(<<param_name(param)>>)
+<% elif param.type == 'Collection' %>
+tube.write_array(<<param_name(param)>>)
+<% else %>
+# error
+<% endif %>
+<% endmacro %>
+
+<% macro stub_write_kwarg(argname, argtype) %>
+if '<<argname>>' in request:
+    tube.write_int(Constants.DaxDataRequestParam.<<argname>>)
+<% if argtype == 'custom' %>
+    AttributeValueEncoder.encode_<<argname>>_direct(tube.enc, request)
+<% elif argtype == 'boolean' %>
+    tube.write_boolean(request.<<argname>>)
+<% elif argtype == 'integer' %>
+    tube.write_int(request.<<argname>>)
+<% elif argtype == 'boolinteger' %>
+    tube.write_int(int(request.<<argname>>))
+<% elif argtype == 'string' %>
+<% if argname == 'ClientRequestToken' %>
+    # ClientRequestToken is written as plain string unlike other string kwargs
+    tube.write_string(request.<<argname>>)
+<% else %>
+    # kwargs strings are always written as UTF-8 encoded binary types
+    tube.write_binary(request.<<argname>>.encode('utf8'))
+<% endif %>
+<% elif argtype == 'enum' %>
+    tube.write_int(getattr(Constants.<<argname>>Values, request.<<argname>>.upper()))
+<% else %>
+    # No encoder for << argtype >> so use custom encoder
+    AttributeValueEncoder.encode_<<argname>>_direct(tube.enc, request)
+<% endif %>
+<% endmacro %>
+
+<% macro stub_write_method(op) %>
+def write_<<method_name(op)>>(<<stub_params(op)>>tube):
+    tube.write_int(<<op.service_id>>)
+    tube.write_int(<<op.method_id>>)
+<% for param in op.parameters %>
+    <<write_param(param) | indent>>
+<% endfor %>
+
+    tube.flush()
+<% endmacro %>
+
+<% for op in remote.operations %>
+<< stub_write_method(op) >>
+<% endfor %>

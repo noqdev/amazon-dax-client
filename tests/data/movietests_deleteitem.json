@@ -1,0 +1,60 @@
+{
+    "Delete Item": {
+        "request": {
+            "Key": {
+                "year": {"N": "1999"},
+                "title": {"S": "The Blair Witch Project"}
+            }
+        },
+        "response": {
+        }
+    },
+    "Delete Item Returned": {
+        "request": {
+            "Key": {
+                "year": {"N": "2000"},
+                "title": {"S": "Me, Myself & Irene"}
+            },
+            "ReturnValues": "ALL_OLD",
+            "ReturnItemCollectionMetrics": "SIZE"
+        },
+        "response": {
+            "Attributes": {
+                "year": {"N":"2000"},
+                "title": {"S":"Me, Myself & Irene"},
+                "info": {"M":{
+                    "directors": {"L":[{"S":"Bobby Farrelly"},{"S":"Peter Farrelly"}]},
+                    "release_date": {"S":"2000-06-15T00:00:00Z"},
+                    "rating": {"N":"6.4"},
+                    "genres": {"L":[{"S":"Comedy"}]},
+                    "image_url": {"S":"http://ia.media-imdb.com/images/M/MV5BMTg5NzIzMzM3M15BMl5BanBnXkFtZTYwMjAwMzg5._V1_SX400_.jpg"},
+                    "plot": {"S":"A nice-guy cop with dissociative identity disorder must protect a woman on the run from a corrupt ex-boyfriend and his associates."},
+                    "running_time_secs": {"N":"6960"},
+                    "actors": {"L":[{"S":"Jim Carrey"}, {"S":"Renee Zellweger"}, {"S":"Anthony Anderson"}]},
+                    "rank": {"N": "1748"}
+                }}
+            },
+            "ItemCollectionMetrics": {
+                "ItemCollectionKey": {"year": "2000"},
+                "SizeEstimateRangeGB": ["0", "1"]
+            }
+        }
+    },
+    "Delete Item Conditional": {
+        "request": {
+            "Key": {
+                "year": {"N": "2001"},
+                "title": {"S": "Joe Dirt"}
+            },
+            "ConditionExpression": "info.rating < :rating AND (info.directors[0] = :director OR contains(info.actors, :star))",
+            "ExpressionAttributeValues": {
+                ":rating": {"N": "7.0"},
+                ":director": {"S":"Dennie Gordon"},
+                ":star": {"S":"David Spade"}
+            }
+        },
+        "response": {
+        }
+    }
+}
+

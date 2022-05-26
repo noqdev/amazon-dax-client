@@ -1,0 +1,129 @@
+{
+    "Get Single Item": {
+        "request": {
+            "TableName": "Movies",
+            "Key": {
+                "year": {"N": "2013"},
+                "title": {"S": "Rush"}
+            }
+        },
+        "response": {
+            "Item": {
+                "year": {"N": "2013"},
+                "title": {"S": "Rush"},
+                "info": {
+                    "M": {
+                        "actors": {
+                            "L": [
+                                {"S": "Daniel Bruhl"},
+                                {"S": "Chris Hemsworth"},
+                                {"S": "Olivia Wilde"}
+                            ]
+                        },
+                        "release_date": {"S": "2013-09-02T00:00:00Z"},
+                        "plot": {"S": "A re-creation of the merciless 1970s rivalry between Formula One rivals James Hunt and Niki Lauda."},
+                        "genres": {
+                            "L": [
+                                {"S": "Action"},
+                                {"S": "Biography"},
+                                {"S": "Drama"},
+                                {"S": "Sport"}
+                            ]
+                        },
+                        "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTQyMDE0MTY0OV5BMl5BanBnXkFtZTcwMjI2OTI0OQ@@._V1_SX400_.jpg"},
+                        "directors": {
+                            "L": [{"S": "Ron Howard"}]
+                        },
+                        "rating": {"N": "8.3"},
+                        "rank": {"N": "2"},
+                        "running_time_secs": {"N": "7380"}
+                    }
+                }
+            }
+        }
+    },
+    "Get Item w/ Projection": {
+        "request": {
+            "Key": {
+                "year": {"N": "2013"},
+                "title": {"S": "Rush"}
+            },
+            "ProjectionExpression": "title, info.rating"
+        },
+        "response": {
+            "Item": {
+                "title": {"S": "Rush"},
+                "info": {
+                    "M": {
+                        "rating": {"N": "8.3"}
+                    }
+                }
+            }
+        }
+    },
+    "Get Item w/ Projection 2": {
+        "request": {
+            "Key": {
+                "year": {"N": "2013"},
+                "title": {"S": "Rush"}
+            },
+            "ProjectionExpression": "title, info.directors[0], info.actors[2], info.actors[0], info.running_time_secs"
+        },
+        "response": {
+            "Item": {
+                "title": {"S": "Rush"},
+                "info": {
+                    "M": {
+                        "actors": {
+                            "L": [
+                                {"S": "Daniel Bruhl"},
+                                {"S": "Olivia Wilde"}
+                            ]
+                        },
+                        "directors": {
+                            "L": [{"S": "Ron Howard"}]
+                        },
+                        "running_time_secs": {"N": "7380"}
+                    }
+                }
+            }
+        }
+    },
+    "Get Item w/ Projection + ExpressionAttributeNames": {
+        "request": {
+            "Key": {
+                "year": {"N": "2013"},
+                "title": {"S": "Rush"}
+            },
+            "ProjectionExpression": "title, #Y, info.rating",
+            "ExpressionAttributeNames": {"#Y": "year"}
+        },
+        "response": {
+            "Item": {
+                "title": {"S": "Rush"},
+                "year": {"N": "2013"},
+                "info": {
+                    "M": {
+                        "rating": {"N": "8.3"}
+                    }
+                }
+            }
+        }
+    },
+    "Get Item w/ AttributesToGet": {
+        "request": {
+            "Key": {
+                "year": {"N": "2013"},
+                "title": {"S": "Rush"}
+            },
+            "AttributesToGet": ["year", "title"]
+        },
+        "response": {
+            "Item": {
+                "year": {"N": "2013"},
+                "title": {"S": "Rush"}
+            }
+        }
+    }
+}
+

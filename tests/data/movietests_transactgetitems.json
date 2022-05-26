@@ -1,0 +1,712 @@
+{
+    "Single table with projections, expression attribute names, and total consumed capacity": {
+        "request": {
+            "ReturnConsumedCapacity": "TOTAL",
+            "TransactItems": [
+                {
+                    "Get": {
+                        "TableName": "Movies",
+                        "Key": {
+                            "year": {
+                                "N": "1964"
+                            },
+                            "title": {
+                                "S": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb"
+                            }
+                        }
+                    }
+                },
+                {
+                    "Get": {
+                        "TableName": "Movies",
+                        "Key": {
+                            "year": {
+                                "N": "1999"
+                            },
+                            "title": {
+                                "S": "American Beauty"
+                            }
+                        },
+                        "ProjectionExpression": "title, info.directors"
+                    }
+                },
+                {
+                    "Get": {
+                        "TableName": "Movies",
+                        "Key": {
+                            "year": {
+                                "N": "1985"
+                            },
+                            "title": {
+                                "S": "Pee-wee's Big Adventure"
+                            }
+                        },
+                        "ExpressionAttributeNames": {
+                            "#y": "year",
+                            "#t": "title",
+                            "#i": "info"
+                        },
+                        "ProjectionExpression": "#y, #t, #i.directors"
+                    }
+                }
+            ]
+        },
+        "response": {
+            "Responses": [
+                {
+                    "Item": {
+                        "year": {
+                            "N": "1964"
+                        },
+                        "info": {
+                            "M": {
+                                "actors": {
+                                    "L": [
+                                        {
+                                            "S": "Peter Sellers"
+                                        },
+                                        {
+                                            "S": "George C. Scott"
+                                        },
+                                        {
+                                            "S": "Sterling Hayden"
+                                        }
+                                    ]
+                                },
+                                "release_date": {
+                                    "S": "1964-01-29T00:00:00Z"
+                                },
+                                "plot": {
+                                    "S": "An insane general starts a process to nuclear holocaust that a war room of politicians and generals frantically try to stop."
+                                },
+                                "genres": {
+                                    "L": [
+                                        {
+                                            "S": "Comedy"
+                                        },
+                                        {
+                                            "S": "Sci-Fi"
+                                        },
+                                        {
+                                            "S": "War"
+                                        }
+                                    ]
+                                },
+                                "image_url": {
+                                    "S": "http://ia.media-imdb.com/images/M/MV5BMTU2ODM2NTkxNF5BMl5BanBnXkFtZTcwOTMwMzU3Mg@@._V1_SX400_.jpg"
+                                },
+                                "directors": {
+                                    "L": [
+                                        {
+                                            "S": "Stanley Kubrick"
+                                        }
+                                    ]
+                                },
+                                "rating": {
+                                    "N": "8.5"
+                                },
+                                "rank": {
+                                    "N": "963"
+                                },
+                                "running_time_secs": {
+                                    "N": "5700"
+                                }
+                            }
+                        },
+                        "title": {
+                            "S": "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb"
+                        }
+                    }
+                },
+                {
+                    "Item": {
+                        "info": {
+                            "M": {
+                                "directors": {
+                                    "L": [
+                                        {
+                                            "S": "Sam Mendes"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "title": {
+                            "S": "American Beauty"
+                        }
+                    }
+                },
+                {
+                    "Item": {
+                        "info": {
+                            "M": {
+                                "directors": {
+                                    "L": [
+                                        {
+                                            "S": "Tim Burton"
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "year": {
+                            "N": "1985"
+                        },
+                        "title": {
+                            "S": "Pee-wee's Big Adventure"
+                        }
+                    }
+                }
+            ],
+            "ConsumedCapacity": [
+                {
+                    "TableName": "Movies",
+                    "CapacityUnits": 6.0,
+                    "ReadCapacityUnits": 6.0
+                }
+            ]
+        }
+    },
+    "Single table without consumed capacity": {
+        "request": {
+            "ReturnConsumedCapacity": "NONE",
+            "TransactItems": [
+                {
+                    "Get": {
+                        "TableName": "Movies",
+                        "Key": {
+                            "year": {
+                                "N": "1962"
+                            },
+                            "title": {
+                                "S": "Lawrence of Arabia"
+                            }
+                        }
+                    }
+                },
+                {
+                    "Get": {
+                        "TableName": "Movies",
+                        "Key": {
+                            "year": {
+                                "N": "1988"
+                            },
+                            "title": {
+                                "S": "Die Hard"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "response": {
+            "Responses": [
+                {
+                    "Item": {
+                        "year": {
+                            "N": "1962"
+                        },
+                        "info": {
+                            "M": {
+                                "actors": {
+                                    "L": [
+                                        {
+                                            "S": "Peter O'Toole"
+                                        },
+                                        {
+                                            "S": "Alec Guinness"
+                                        },
+                                        {
+                                            "S": "Anthony Quinn"
+                                        }
+                                    ]
+                                },
+                                "release_date": {
+                                    "S": "1962-12-10T00:00:00Z"
+                                },
+                                "plot": {
+                                    "S": "A flamboyant and controversial British military figure and his conflicted loyalties during his World War I service in Arabia."
+                                },
+                                "genres": {
+                                    "L": [
+                                        {
+                                            "S": "Adventure"
+                                        },
+                                        {
+                                            "S": "Biography"
+                                        },
+                                        {
+                                            "S": "Drama"
+                                        },
+                                        {
+                                            "S": "History"
+                                        },
+                                        {
+                                            "S": "War"
+                                        }
+                                    ]
+                                },
+                                "image_url": {
+                                    "S": "http://ia.media-imdb.com/images/M/MV5BMzAwMjM4NzA2OV5BMl5BanBnXkFtZTcwMDI0NzAwMQ@@._V1_SX400_.jpg"
+                                },
+                                "directors": {
+                                    "L": [
+                                        {
+                                            "S": "David Lean"
+                                        }
+                                    ]
+                                },
+                                "rating": {
+                                    "N": "8.4"
+                                },
+                                "rank": {
+                                    "N": "1445"
+                                },
+                                "running_time_secs": {
+                                    "N": "12960"
+                                }
+                            }
+                        },
+                        "title": {
+                            "S": "Lawrence of Arabia"
+                        }
+                    }
+                },
+                {
+                    "Item": {
+                        "year": {
+                            "N": "1988"
+                        },
+                        "info": {
+                            "M": {
+                                "actors": {
+                                    "L": [
+                                        {
+                                            "S": "Bruce Willis"
+                                        },
+                                        {
+                                            "S": "Alan Rickman"
+                                        },
+                                        {
+                                            "S": "Bonnie Bedelia"
+                                        }
+                                    ]
+                                },
+                                "release_date": {
+                                    "S": "1988-07-15T00:00:00Z"
+                                },
+                                "plot": {
+                                    "S": "John McClane, officer of the NYPD, tries to save wife Holly Gennaro and several others, taken hostage by German terrorist Hans Gruber during a Christmas party at the Nakatomi Plaza in Los Angeles."
+                                },
+                                "genres": {
+                                    "L": [
+                                        {
+                                            "S": "Action"
+                                        },
+                                        {
+                                            "S": "Thriller"
+                                        }
+                                    ]
+                                },
+                                "image_url": {
+                                    "S": "http://ia.media-imdb.com/images/M/MV5BMTY4ODM0OTc2M15BMl5BanBnXkFtZTcwNzE0MTk3OA@@._V1_SX400_.jpg"
+                                },
+                                "directors": {
+                                    "L": [
+                                        {
+                                            "S": "John McTiernan"
+                                        }
+                                    ]
+                                },
+                                "rating": {
+                                    "N": "8.3"
+                                },
+                                "rank": {
+                                    "N": "786"
+                                },
+                                "running_time_secs": {
+                                    "N": "7860"
+                                }
+                            }
+                        },
+                        "title": {
+                            "S": "Die Hard"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "Two tables with total consumed capacity": {
+        "request": {
+            "ReturnConsumedCapacity": "TOTAL",
+            "TransactItems": [
+                {
+                    "Get": {
+                        "TableName": "Movies",
+                        "Key": {
+                            "year": {
+                                "N": "1962"
+                            },
+                            "title": {
+                                "S": "Lawrence of Arabia"
+                            }
+                        }
+                    }
+                },
+                {
+                    "Get": {
+                        "TableName": "FewMovies",
+                        "Key": {
+                            "year": {
+                                "N": "2013"
+                            },
+                            "title": {
+                                "S": "Rush"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "response": {
+            "ConsumedCapacity": [
+                {
+                    "TableName": "FewMovies",
+                    "CapacityUnits": 2.0,
+                    "ReadCapacityUnits": 2.0
+                },
+                {
+                    "TableName": "Movies",
+                    "CapacityUnits": 2.0,
+                    "ReadCapacityUnits": 2.0
+                }
+            ],
+            "Responses": [
+                {
+                    "Item": {
+                        "year": {
+                            "N": "1962"
+                        },
+                        "info": {
+                            "M": {
+                                "actors": {
+                                    "L": [
+                                        {
+                                            "S": "Peter O'Toole"
+                                        },
+                                        {
+                                            "S": "Alec Guinness"
+                                        },
+                                        {
+                                            "S": "Anthony Quinn"
+                                        }
+                                    ]
+                                },
+                                "release_date": {
+                                    "S": "1962-12-10T00:00:00Z"
+                                },
+                                "plot": {
+                                    "S": "A flamboyant and controversial British military figure and his conflicted loyalties during his World War I service in Arabia."
+                                },
+                                "genres": {
+                                    "L": [
+                                        {
+                                            "S": "Adventure"
+                                        },
+                                        {
+                                            "S": "Biography"
+                                        },
+                                        {
+                                            "S": "Drama"
+                                        },
+                                        {
+                                            "S": "History"
+                                        },
+                                        {
+                                            "S": "War"
+                                        }
+                                    ]
+                                },
+                                "image_url": {
+                                    "S": "http://ia.media-imdb.com/images/M/MV5BMzAwMjM4NzA2OV5BMl5BanBnXkFtZTcwMDI0NzAwMQ@@._V1_SX400_.jpg"
+                                },
+                                "directors": {
+                                    "L": [
+                                        {
+                                            "S": "David Lean"
+                                        }
+                                    ]
+                                },
+                                "rating": {
+                                    "N": "8.4"
+                                },
+                                "rank": {
+                                    "N": "1445"
+                                },
+                                "running_time_secs": {
+                                    "N": "12960"
+                                }
+                            }
+                        },
+                        "title": {
+                            "S": "Lawrence of Arabia"
+                        }
+                    }
+                },
+                {
+                    "Item": {
+                        "year": {
+                            "N": "2013"
+                        },
+                        "info": {
+                            "M": {
+                                "actors": {
+                                    "L": [
+                                        {
+                                            "S": "Daniel Bruhl"
+                                        },
+                                        {
+                                            "S": "Chris Hemsworth"
+                                        },
+                                        {
+                                            "S": "Olivia Wilde"
+                                        }
+                                    ]
+                                },
+                                "release_date": {
+                                    "S": "2013-09-02T00:00:00Z"
+                                },
+                                "plot": {
+                                    "S": "A re-creation of the merciless 1970s rivalry between Formula One rivals James Hunt and Niki Lauda."
+                                },
+                                "genres": {
+                                    "L": [
+                                        {
+                                            "S": "Action"
+                                        },
+                                        {
+                                            "S": "Biography"
+                                        },
+                                        {
+                                            "S": "Drama"
+                                        },
+                                        {
+                                            "S": "Sport"
+                                        }
+                                    ]
+                                },
+                                "image_url": {
+                                    "S": "http://ia.media-imdb.com/images/M/MV5BMTQyMDE0MTY0OV5BMl5BanBnXkFtZTcwMjI2OTI0OQ@@._V1_SX400_.jpg"
+                                },
+                                "directors": {
+                                    "L": [
+                                        {
+                                            "S": "Ron Howard"
+                                        }
+                                    ]
+                                },
+                                "rating": {
+                                    "N": "8.3"
+                                },
+                                "rank": {
+                                    "N": "2"
+                                },
+                                "running_time_secs": {
+                                    "N": "7380"
+                                }
+                            }
+                        },
+                        "title": {
+                            "S": "Rush"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "Nonexistent item": {
+        "request": {
+            "ReturnConsumedCapacity": "NONE",
+            "TransactItems": [
+                {
+                    "Get": {
+                        "TableName": "Movies",
+                        "Key": {
+                            "year": {
+                                "N": "1962"
+                            },
+                            "title": {
+                                "S": "Lawrence of Arabia"
+                            }
+                        }
+                    }
+                },
+                {
+                    "Get": {
+                        "TableName": "Movies",
+                        "Key": {
+                            "year": {
+                                "N": "1890"
+                            },
+                            "title": {
+                                "S": "There Were No Movies in 1890!"
+                            }
+                        }
+                    }
+                },
+                {
+                    "Get": {
+                        "TableName": "Movies",
+                        "Key": {
+                            "year": {
+                                "N": "1988"
+                            },
+                            "title": {
+                                "S": "Die Hard"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "response": {
+            "Responses": [
+                {
+                    "Item": {
+                        "year": {
+                            "N": "1962"
+                        },
+                        "info": {
+                            "M": {
+                                "actors": {
+                                    "L": [
+                                        {
+                                            "S": "Peter O'Toole"
+                                        },
+                                        {
+                                            "S": "Alec Guinness"
+                                        },
+                                        {
+                                            "S": "Anthony Quinn"
+                                        }
+                                    ]
+                                },
+                                "release_date": {
+                                    "S": "1962-12-10T00:00:00Z"
+                                },
+                                "plot": {
+                                    "S": "A flamboyant and controversial British military figure and his conflicted loyalties during his World War I service in Arabia."
+                                },
+                                "genres": {
+                                    "L": [
+                                        {
+                                            "S": "Adventure"
+                                        },
+                                        {
+                                            "S": "Biography"
+                                        },
+                                        {
+                                            "S": "Drama"
+                                        },
+                                        {
+                                            "S": "History"
+                                        },
+                                        {
+                                            "S": "War"
+                                        }
+                                    ]
+                                },
+                                "image_url": {
+                                    "S": "http://ia.media-imdb.com/images/M/MV5BMzAwMjM4NzA2OV5BMl5BanBnXkFtZTcwMDI0NzAwMQ@@._V1_SX400_.jpg"
+                                },
+                                "directors": {
+                                    "L": [
+                                        {
+                                            "S": "David Lean"
+                                        }
+                                    ]
+                                },
+                                "rating": {
+                                    "N": "8.4"
+                                },
+                                "rank": {
+                                    "N": "1445"
+                                },
+                                "running_time_secs": {
+                                    "N": "12960"
+                                }
+                            }
+                        },
+                        "title": {
+                            "S": "Lawrence of Arabia"
+                        }
+                    }
+                },
+                {},
+                {
+                    "Item": {
+                        "year": {
+                            "N": "1988"
+                        },
+                        "info": {
+                            "M": {
+                                "actors": {
+                                    "L": [
+                                        {
+                                            "S": "Bruce Willis"
+                                        },
+                                        {
+                                            "S": "Alan Rickman"
+                                        },
+                                        {
+                                            "S": "Bonnie Bedelia"
+                                        }
+                                    ]
+                                },
+                                "release_date": {
+                                    "S": "1988-07-15T00:00:00Z"
+                                },
+                                "plot": {
+                                    "S": "John McClane, officer of the NYPD, tries to save wife Holly Gennaro and several others, taken hostage by German terrorist Hans Gruber during a Christmas party at the Nakatomi Plaza in Los Angeles."
+                                },
+                                "genres": {
+                                    "L": [
+                                        {
+                                            "S": "Action"
+                                        },
+                                        {
+                                            "S": "Thriller"
+                                        }
+                                    ]
+                                },
+                                "image_url": {
+                                    "S": "http://ia.media-imdb.com/images/M/MV5BMTY4ODM0OTc2M15BMl5BanBnXkFtZTcwNzE0MTk3OA@@._V1_SX400_.jpg"
+                                },
+                                "directors": {
+                                    "L": [
+                                        {
+                                            "S": "John McTiernan"
+                                        }
+                                    ]
+                                },
+                                "rating": {
+                                    "N": "8.3"
+                                },
+                                "rank": {
+                                    "N": "786"
+                                },
+                                "running_time_secs": {
+                                    "N": "7860"
+                                }
+                            }
+                        },
+                        "title": {
+                            "S": "Die Hard"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

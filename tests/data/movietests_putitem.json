@@ -1,0 +1,138 @@
+{
+    "__default_table__": "WriteMovies",
+    "Put New Item": {
+        "request": {
+            "Item": {
+                "year": {"N":"2016"},
+                "title": {"S":"Manchester by the Sea"},
+                "info": {"M":{
+                    "directors": {"L":[{"S":"Kenneth Lonergan"}]},
+                    "release_date": {"S":"2016-12-16T00:00:00Z"},
+                    "rating": {"N":"7.9"},
+                    "genres": {"L":[{"S":"Drama"}]},
+                    "image_url": {"S":"https://images-na.ssl-images-amazon.com/images/M/MV5BMTYxMjk0NDg4Ml5BMl5BanBnXkFtZTgwODcyNjA5OTE@._V1_UX182_CR0,0,182,268_AL_.jpg"},
+                    "plot": {"S":"A depressed uncle is asked to take care of his teenage nephew after the boy's father dies."},
+                    "running_time_secs": {"N":"8220"},
+                    "actors": {"L":[{"S":"Casey Affleck"}, {"S":"Michelle Williams"}, {"S":"Kyle Chandler"}]}
+                }}
+            }
+        },
+        "response": {
+        }
+    },
+    "Put Existing Item": {
+        "request": {
+            "Item": {
+                "year": {"N":"2006"},
+                "title": {"S":"The Pink Panther"},
+                "info": {"M":{
+                    "directors": {"L":[{"S":"Blake Edwards"}]},
+                    "release_date": {"S":"1963-12-19T00:00:00Z"},
+                    "rating": {"N":"7.1"},
+                    "genres": {"L":[{"S":"Comedy"},{"S":"Crime"}]},
+                    "image_url": {"S":"http://ia.media-imdb.com/images/M/MV5BNzg5NTYzNDI4OF5BMl5BanBnXkFtZTcwOTQxMTMyNA@@._V1_SX400_.jpg"},
+                    "plot": {"S":"Bumbling and conceited French police inspector Clouseau tries to catch The Phantom, a daring jewel thief whose identity and features are unknown - and is acting right under his nose."},
+                    "running_time_secs": {"N":"6900"},
+                    "actors": {"L":[{"S":"David Niven"}, {"S":"Peter Sellers"}, {"S":"Robert Wagner"}]},
+                    "rank": {"N": "3625"}
+                }}
+            },
+            "ReturnValues": "ALL_OLD",
+            "ReturnItemCollectionMetrics": "SIZE"
+        },
+        "response": {
+            "Attributes": {
+                "year": {"N":"2006"},
+                "title": {"S":"The Pink Panther"},
+                "info": {"M":{
+                    "directors": {"L":[{"S":"Shawn Levy"}]},
+                    "release_date": {"S":"2006-01-19T00:00:00Z"},
+                    "rating": {"N":"5.3"},
+                    "genres": {"L":[{"S":"Adventure"},{"S":"Comedy"},{"S":"Crime"},{"S":"Mystery"}]},
+                    "image_url": {"S":"http://ia.media-imdb.com/images/M/MV5BMTkyMTAwNzg2NV5BMl5BanBnXkFtZTcwNTE0MTgyMQ@@._V1_SX400_.jpg"},
+                    "plot": {"S":"Bumbling Inspector Clouseau must solve the murder of a famous soccer coach and find out who stole the infamous Pink Panther diamond."},
+                    "running_time_secs": {"N":"5580"},
+                    "actors": {"L":[{"S":"Steve Martin"}, {"S":"Kevin Kline"}, {"S":"Jean Reno"}]},
+                    "rank": {"N": "3244"}
+                }}
+            },
+            "ItemCollectionMetrics": {
+                "ItemCollectionKey": {"year": "2006"},
+                "SizeEstimateRangeGB": ["0", "1"]
+            }
+        }
+    },
+    "Put Existing Item no Overwrite": {
+        "request": {
+            "Item": {
+                "year": {"N":"2006"},
+                "title": {"S":"The Pink Panther"},
+                "info": {"M":{
+                    "directors": {"L":[{"S":"Blake Edwards"}]},
+                    "release_date": {"S":"1963-12-19T00:00:00Z"},
+                    "rating": {"N":"7.1"},
+                    "genres": {"L":[{"S":"Comedy"},{"S":"Crime"}]},
+                    "image_url": {"S":"http://ia.media-imdb.com/images/M/MV5BNzg5NTYzNDI4OF5BMl5BanBnXkFtZTcwOTQxMTMyNA@@._V1_SX400_.jpg"},
+                    "plot": {"S":"Bumbling and conceited French police inspector Clouseau tries to catch The Phantom, a daring jewel thief whose identity and features are unknown - and is acting right under his nose."},
+                    "running_time_secs": {"N":"6900"},
+                    "actors": {"L":[{"S":"David Niven"}, {"S":"Peter Sellers"}, {"S":"Robert Wagner"}]},
+                    "rank": {"N": "3625"}
+                }}
+            },
+            "ConditionExpression": "attribute_not_exists(#Y) AND attribute_not_exists(title)",
+            "ExpressionAttributeNames": {"#Y": "year"},
+            "ReturnValues": "ALL_OLD",
+            "ReturnItemCollectionMetrics": "SIZE"
+        },
+        "error": "ConditionalCheckFailed"
+    },
+    "Put Existing Item w/ Condition": {
+        "request": {
+            "Item": {
+                "year": {"N":"2003"},
+                "title": {"S":"The Italian Job"},
+                "info": {"M":{
+                    "directors": {"L":[{"S":"Peter Collinson"}]},
+                    "release_date": {"S":"1969-06-02T00:00:00Z"},
+                    "rating": {"N":"7.2"},
+                    "genres": {"L":[{"S":"Action"},{"S":"Comedy"},{"S":"Crime"},{"S":"Thriller"}]},
+                    "image_url": {"S":"http://ia.media-imdb.com/images/M/MV5BNTI1ODYwNzg3Nl5BMl5BanBnXkFtZTcwMDYzMjk3OA@@._V1_SX400_.jpg"},
+                    "plot": {"S":"Comic caper movie about a plan to steal a gold shipment from the streets of Turin by creating a traffic jam."},
+                    "running_time_secs": {"N":"5940"},
+                    "actors": {"L":[{"S":"Michael Caine"}, {"S":"Noel Coward"}, {"S":"Benny Hill"}]},
+                    "rank": {"N": "3806"}
+                }}
+            },
+            "ConditionExpression": "info.rating < :rating AND (info.directors[0] = :director OR contains(info.actors, :star))",
+            "ExpressionAttributeValues": {
+                ":rating": {"N": "7.0"},
+                ":director": {"S":"F. Gary Gray"},
+                ":star": {"S":"Mark Wahlberg"}
+            },
+            "ReturnValues": "ALL_OLD",
+            "ReturnItemCollectionMetrics": "SIZE"
+        },
+        "response": {
+            "Attributes": {
+                "year": {"N":"2003"},
+                "title": {"S":"The Italian Job"},
+                "info": {"M":{
+                    "directors": {"L":[{"S":"F. Gary Gray"}]},
+                    "release_date": {"S":"2003-05-30T00:00:00Z"},
+                    "rating": {"N":"6.9"},
+                    "genres": {"L":[{"S":"Action"},{"S":"Crime"},{"S":"Thriller"}]},
+                    "image_url": {"S":"http://ia.media-imdb.com/images/M/MV5BMTc1MjY1MTA0NV5BMl5BanBnXkFtZTYwNTc5OTU3._V1_SX400_.jpg"},
+                    "plot": {"S":"After being betrayed and left for dead in Italy, Charlie Croker and his team plan an elaborate gold heist against their former ally."},
+                    "running_time_secs": {"N":"6660"},
+                    "actors": {"L":[{"S":"Donald Sutherland"}, {"S":"Mark Wahlberg"}, {"S":"Edward Norton"}]},
+                    "rank": {"N": "744"}
+                }}
+            },
+            "ItemCollectionMetrics": {
+                "ItemCollectionKey": {"year": "2003"},
+                "SizeEstimateRangeGB": ["0", "1"]
+            }
+        }
+    }
+}
+

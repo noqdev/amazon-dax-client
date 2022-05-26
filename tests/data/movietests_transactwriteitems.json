@@ -1,0 +1,550 @@
+{
+    "TransactWrite multi tables": {
+        "request": {
+            "TransactItems": [
+                {
+                    "ConditionCheck": {
+                        "TableName": "TxnWriteTable1",
+                        "Key": {
+                            "year": {"N": "2013"},
+                            "title": {"S": "Rush"}
+                        },
+                        "ConditionExpression": "attribute_exists (info)"
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "year": {"N": "2013"},
+                            "title": {"S": "The Hunger Games: Catching Fire"},
+                            "info": {
+                                "M": {
+                                    "directors": {"L": [{"S": "Francis Lawrence updated......"}]},
+                                    "release_date": {"S": "2013-11-11T00:00:00Z"},
+                                    "genres": {"L": [
+                                        {"S": "Action"},
+                                        {"S": "Adventure"},
+                                        {"S": "Sci-Fi"},
+                                        {"S": "Thriller"}
+                                    ]},
+                                    "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTAyMjQ3OTAxMzNeQTJeQWpwZ15BbWU4MDU0NzA1MzAx._V1_SX400_.jpg"},
+                                    "plot": {"S": "Katniss Everdeen and Peeta Mellark become targets of the Capitol after their victory in the 74th Hunger Games sparks a rebellion in the Districts of Panem."},
+                                    "rank": {"N": "4"},
+                                    "running_time_secs": {"N": "8760"},
+                                    "actors": {"L": [
+                                        {"S": "Jennifer Lawrence"},
+                                        {"S": "Josh Hutcherson"},
+                                        {"S": "Liam Hemsworth"}
+                                    ]}
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "Delete": {
+                        "TableName": "TxnWriteTable2",
+                        "Key": {
+                            "year": {"N": "2013"},
+                            "title": {"S": "Prisoners"}
+                        }
+                    }
+                },
+                {
+                    "Update": {
+                        "TableName": "TxnWriteTable2",
+                        "Key": {
+                            "year": {"N": "2013"},
+                            "title": {"S": "Thor: The Dark World"}
+                        },
+                        "UpdateExpression": "SET updateAttr = :updateVal",
+                        "ExpressionAttributeValues": {
+                            ":updateVal": {"N": "11"}
+                        }
+                    }
+                }
+            ],
+            "ReturnConsumedCapacity": "NONE",
+            "ReturnItemCollectionMetrics": "NONE"
+        },
+        "response": {
+        }
+    },
+    "TransactWrite multi table with ReturnConsumedCapacity/ReturnItemCollectionMetrics": {
+        "request": {
+            "TransactItems": [
+                {
+                    "ConditionCheck": {
+                        "TableName": "TxnWriteTable1",
+                        "Key": {
+                            "title": {"S": "World War Z"},
+                            "year": {"N": "2013"}
+                        },
+                        "ConditionExpression": "attribute_exists (info)"
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "year": {"N": "2014"},
+                            "title": {"S": "Transformers: Age of Extinction"},
+                            "info": {
+                                "M": {
+                                    "directors": {"L": [{"S": "Michael Bay"}]},
+                                    "release_date": {"S": "2014-06-25T00:00:00Z"},
+                                    "genres": {"L": [
+                                        {"S": "Action"},
+                                        {"S": "Adventure"},
+                                        {"S": "Sci-Fi"}
+                                    ]},
+                                    "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTQyMDA5Nzg0Nl5BMl5BanBnXkFtZTgwNzA4NDcxMDE@._V1_SX400_.jpg"},
+                                    "plot": {"S": "A mechanic and his daughter make a discovery that brings down Autobots and Decepticons - and a paranoid government official - on them."},
+                                    "rank": {"N": "10"},
+                                    "actors": {"L": [
+                                        {"S": "Mark Wahlberg"},
+                                        {"S": "Nicola Peltz"},
+                                        {"S": "Jack Reynor"}
+                                    ]}
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "Delete": {
+                        "TableName": "TxnWriteTable2",
+                        "Key": {
+                            "year": {"N": "2014"},
+                            "title": {"S": "X-Men: Days of Future Past"}
+                        }
+                    }
+                },
+                {
+                    "Update": {
+                        "TableName": "TxnWriteTable2",
+                        "Key": {
+                            "year": {"N": "2013"},
+                            "title": {"S": "This Is the End"}
+                        },
+                        "UpdateExpression": "SET updateAttr = :updateVal",
+                        "ExpressionAttributeValues": {
+                            ":updateVal": {"N": "123"}
+                        }
+                    }
+                }
+            ],
+            "ReturnConsumedCapacity": "TOTAL",
+            "ReturnItemCollectionMetrics": "SIZE"
+        },
+        "response": {
+            "ConsumedCapacity": [
+                {
+                    "TableName": "TxnWriteTable1",
+                    "CapacityUnits": 4,
+                    "WriteCapacityUnits": 4
+                },
+                {
+                    "TableName": "TxnWriteTable2",
+                    "CapacityUnits": 8,
+                    "WriteCapacityUnits": 8
+                }
+            ],
+            "ItemCollectionMetrics": {
+                "TxnWriteTable1": [ {
+                    "ItemCollectionKey": { "year": { "N": "2014" } },
+                    "SizeEstimateRangeGB": [ 0, 1 ] } ],
+                "TxnWriteTable2": [
+                    {
+                        "ItemCollectionKey": { "year": { "N": "2014" } },
+                        "SizeEstimateRangeGB": [ 0, 1 ]
+                    },
+                    {
+                        "ItemCollectionKey": { "year": { "N": "2013" } },
+                        "SizeEstimateRangeGB": [ 0, 1 ]
+                    }
+                ]
+            }
+        }
+    },
+    "TransactWrite with explicit requestToken": {
+        "request": {
+            "TransactItems": [
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "ClientToken test"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                }
+            ],
+            "ClientRequestToken": "foo"
+        },
+        "response": {
+
+        }
+    },
+    "TransactWrite same key violation": {
+        "request": {
+            "TransactItems": [
+                {
+                    "ConditionCheck": {
+                        "TableName": "TxnWriteTable1",
+                        "Key": {
+                            "title": {"S": "World War Z"},
+                            "year": {"N": "2013"}
+                        },
+                        "ConditionExpression": "attribute_exists (info)"
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "World War Z"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                }
+            ]
+        },
+        "error": "ValidationException"
+    },
+    "TransactWrite contain multi operations": {
+        "request": {
+            "TransactItems": [
+                {
+                    "ConditionCheck": {
+                        "TableName": "TxnWriteTable1",
+                        "Key": {
+                            "title": {"S": "World War Z"},
+                            "year": {"N": "2013"}
+                        },
+                        "ConditionExpression": "attribute_exists (info)"
+                    },
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "World War Z2"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                }
+            ]
+        },
+        "error": "ValidationException"
+    },
+    "TransactWrite contain null TransactWriteItems": {
+        "request": {
+            "TransactItems": [
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "null TransactWriteItems"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                null
+            ]
+        },
+        "error": "ValidationException"
+    },
+    "TransactWrite with null TransactWriteItems": {
+        "request": {
+            "TransactItems": null
+        },
+        "error": "ValidationException"
+    },
+    "TransactWrite contain zero request": {
+        "request": {
+            "TransactItems": [
+            ]
+        },
+        "error": "ValidationException"
+    },
+    "TransactWrite contains more than twenty five requests": {
+        "request": {
+            "TransactItems": [
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests1"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests2"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests3"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests4"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests5"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests6"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests7"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests8"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests9"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests10"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests11"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests12"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests13"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests14"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests15"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests16"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests17"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests18"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests19"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests20"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests21"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests22"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests23"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests24"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests25"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "contains more than twenty five requests26"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                }
+            ]
+        },
+        "error": "ValidationException"
+    },
+    "TransactWrite TransactionCanceledException": {
+        "request": {
+            "TransactItems": [
+                {
+                    "ConditionCheck": {
+                        "TableName": "TxnWriteTable1",
+                        "Key": {
+                            "title": {"S": "Rush"},
+                            "year": {"N": "2013"}
+                        },
+                        "ConditionExpression": "attribute_exists (attribute_name_not_exist)",
+                        "ReturnValuesOnConditionCheckFailure": "ALL_OLD"
+                    }
+                },
+                {
+                    "Put": {
+                        "TableName": "TxnWriteTable1",
+                        "Item": {
+                            "title": {"S": "null TransactWriteItems"},
+                            "year": {"N": "2013"}
+                        }
+                    }
+                },
+                {
+                    "ConditionCheck": {
+                        "TableName": "TxnWriteTable2",
+                        "Key": {
+                            "title": {"S": "World War Z"},
+                            "year": {"N": "2013"}
+                        },
+                        "ConditionExpression": "attribute_exists (fake_attribute_name)",
+                        "ReturnValuesOnConditionCheckFailure": "ALL_OLD"
+                    }
+                }
+            ]
+        },
+        "error": "TransactionCanceledException"
+    }
+}
+

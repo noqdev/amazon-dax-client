@@ -1,0 +1,554 @@
+{
+    "Scan FewMovies": {
+        "request": {
+            "TableName": "FewMovies"
+        },
+        "response": {
+            "Count": 2,
+            "ScannedCount": 2,
+            "Items": [{
+                "year": {"N": "2013"},
+                "title": {"S": "Prisoners"},
+                "info": {
+                    "M": {
+                        "actors": {
+                            "L": [
+                                {"S": "Hugh Jackman"},
+                                {"S": "Jake Gyllenhaal"},
+                                {"S": "Viola Davis"}
+                            ]
+                        },
+                        "release_date": {"S": "2013-08-30T00:00:00Z"},
+                        "plot": {"S": "When Keller Dover's daughter and her friend go missing, he takes matters into his own hands as the police pursue multiple leads and the pressure mounts. But just how far will this desperate father go to protect his family?"},
+                        "genres": {
+                            "L": [
+                                {"S": "Crime"},
+                                {"S": "Drama"},
+                                {"S": "Thriller"}
+                            ]
+                        },
+                        "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX400_.jpg"},
+                        "directors": {
+                            "L": [{"S": "Denis Villeneuve"}]
+                        },
+                        "rating": {"N": "8.2"},
+                        "rank": {"N": "3"},
+                        "running_time_secs": {"N": "9180"}
+                    }
+                }
+            },{
+                "year": {"N": "2013"},
+                "title": {"S": "Rush"},
+                "info": {
+                    "M": {
+                        "actors": {
+                            "L": [
+                                {"S": "Daniel Bruhl"},
+                                {"S": "Chris Hemsworth"},
+                                {"S": "Olivia Wilde"}
+                            ]
+                        },
+                        "release_date": {"S": "2013-09-02T00:00:00Z"},
+                        "plot": {"S": "A re-creation of the merciless 1970s rivalry between Formula One rivals James Hunt and Niki Lauda."},
+                        "genres": {
+                            "L": [
+                                {"S": "Action"},
+                                {"S": "Biography"},
+                                {"S": "Drama"},
+                                {"S": "Sport"}
+                            ]
+                        },
+                        "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTQyMDE0MTY0OV5BMl5BanBnXkFtZTcwMjI2OTI0OQ@@._V1_SX400_.jpg"},
+                        "directors": {
+                            "L": [{"S": "Ron Howard"}]
+                        },
+                        "rating": {"N": "8.3"},
+                        "rank": {"N": "2"},
+                        "running_time_secs": {"N": "7380"}
+                    }
+                }
+            }]
+        }
+    },
+    "Scan FewMovies Paged": {
+        "request": {
+            "TableName": "FewMovies",
+            "Limit": 1,
+            "ReturnConsumedCapacity": "NONE"
+        },
+        "response": {
+            "Count": 1,
+            "ScannedCount": 1,
+            "Items": [{
+                "year": {"N": "2013"},
+                "title": {"S": "Prisoners"},
+                "info": {
+                    "M": {
+                        "actors": {
+                            "L": [
+                                {"S": "Hugh Jackman"},
+                                {"S": "Jake Gyllenhaal"},
+                                {"S": "Viola Davis"}
+                            ]
+                        },
+                        "release_date": {"S": "2013-08-30T00:00:00Z"},
+                        "plot": {"S": "When Keller Dover's daughter and her friend go missing, he takes matters into his own hands as the police pursue multiple leads and the pressure mounts. But just how far will this desperate father go to protect his family?"},
+                        "genres": {
+                            "L": [
+                                {"S": "Crime"},
+                                {"S": "Drama"},
+                                {"S": "Thriller"}
+                            ]
+                        },
+                        "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX400_.jpg"},
+                        "directors": {
+                            "L": [{"S": "Denis Villeneuve"}]
+                        },
+                        "rating": {"N": "8.2"},
+                        "rank": {"N": "3"},
+                        "running_time_secs": {"N": "9180"}
+                    }
+                }
+            }],
+            "LastEvaluatedKey": {
+                "year": {"N": "2013"},
+                "title": {"S": "Prisoners"}
+            }
+        }
+    },
+    "Scan FewMovies All Pages": {
+        "calls": [{
+            "request": {
+                "TableName": "FewMovies",
+                "Limit": 1,
+                "ReturnConsumedCapacity": "NONE"
+            },
+            "response": {
+                "Count": 1,
+                "ScannedCount": 1,
+                "Items": [{
+                    "year": {"N": "2013"},
+                    "title": {"S": "Prisoners"},
+                    "info": {
+                        "M": {
+                            "actors": {
+                                "L": [
+                                    {"S": "Hugh Jackman"},
+                                    {"S": "Jake Gyllenhaal"},
+                                    {"S": "Viola Davis"}
+                                ]
+                            },
+                            "release_date": {"S": "2013-08-30T00:00:00Z"},
+                            "plot": {"S": "When Keller Dover's daughter and her friend go missing, he takes matters into his own hands as the police pursue multiple leads and the pressure mounts. But just how far will this desperate father go to protect his family?"},
+                            "genres": {
+                                "L": [
+                                    {"S": "Crime"},
+                                    {"S": "Drama"},
+                                    {"S": "Thriller"}
+                                ]
+                            },
+                            "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX400_.jpg"},
+                            "directors": {
+                                "L": [{"S": "Denis Villeneuve"}]
+                            },
+                            "rating": {"N": "8.2"},
+                            "rank": {"N": "3"},
+                            "running_time_secs": {"N": "9180"}
+                        }
+                    }
+                }],
+                "LastEvaluatedKey": {
+                    "year": {"N": "2013"},
+                    "title": {"S": "Prisoners"}
+                }
+            }
+        },{
+            "request": {
+                "TableName": "FewMovies",
+                "Limit": 1,
+                "ReturnConsumedCapacity": "NONE",
+                "ExclusiveStartKey": {
+                    "year": {"N": "2013"},
+                    "title": {"S": "Prisoners"}
+                }
+            },
+            "response": {
+                "Count": 1,
+                "ScannedCount": 1,
+                "LastEvaluatedKey": {
+                    "year": {"N": "2013"},
+                    "title": {"S": "Rush"}
+                },
+                "Items": [{
+                    "year": {"N": "2013"},
+                    "title": {"S": "Rush"},
+                    "info": {
+                        "M": {
+                            "actors": {
+                                "L": [
+                                    {"S": "Daniel Bruhl"},
+                                    {"S": "Chris Hemsworth"},
+                                    {"S": "Olivia Wilde"}
+                                ]
+                            },
+                            "release_date": {"S": "2013-09-02T00:00:00Z"},
+                            "plot": {"S": "A re-creation of the merciless 1970s rivalry between Formula One rivals James Hunt and Niki Lauda."},
+                            "genres": {
+                                "L": [
+                                    {"S": "Action"},
+                                    {"S": "Biography"},
+                                    {"S": "Drama"},
+                                    {"S": "Sport"}
+                                ]
+                            },
+                            "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTQyMDE0MTY0OV5BMl5BanBnXkFtZTcwMjI2OTI0OQ@@._V1_SX400_.jpg"},
+                            "directors": {
+                                "L": [{"S": "Ron Howard"}]
+                            },
+                            "rating": {"N": "8.3"},
+                            "rank": {"N": "2"},
+                            "running_time_secs": {"N": "7380"}
+                        }
+                    }
+                }]
+            }
+        }]
+    },
+    "Scan FewMovies w/ Projection": {
+        "request": {
+            "TableName": "FewMovies",
+            "ProjectionExpression": "title, info.rating",
+            "ReturnConsumedCapacity": "NONE"
+        },
+        "response": {
+            "Count": 2,
+            "ScannedCount": 2,
+            "Items": [{
+                "title": {"S": "Prisoners"},
+                "info": {
+                    "M": {
+                        "rating": {"N": "8.2"}
+                    }
+                }
+            },{
+                "title": {"S": "Rush"},
+                "info": {
+                    "M": {
+                        "rating": {"N": "8.3"}
+                    }
+                }
+            }]
+        }
+    },
+    "Scan FewMovies w/ Filter": {
+        "request": {
+            "TableName": "FewMovies",
+            "FilterExpression": "contains(info.actors, :actor)",
+            "ExpressionAttributeValues": {
+                ":actor": {"S": "Chris Hemsworth"}
+            },
+            "ReturnConsumedCapacity": "NONE"
+        },
+        "response": {
+            "Count": 1,
+            "ScannedCount": 2,
+            "Items": [{
+                "year": {"N": "2013"},
+                "title": {"S": "Rush"},
+                "info": {
+                    "M": {
+                        "actors": {
+                            "L": [
+                                {"S": "Daniel Bruhl"},
+                                {"S": "Chris Hemsworth"},
+                                {"S": "Olivia Wilde"}
+                            ]
+                        },
+                        "release_date": {"S": "2013-09-02T00:00:00Z"},
+                        "plot": {"S": "A re-creation of the merciless 1970s rivalry between Formula One rivals James Hunt and Niki Lauda."},
+                        "genres": {
+                            "L": [
+                                {"S": "Action"},
+                                {"S": "Biography"},
+                                {"S": "Drama"},
+                                {"S": "Sport"}
+                            ]
+                        },
+                        "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTQyMDE0MTY0OV5BMl5BanBnXkFtZTcwMjI2OTI0OQ@@._V1_SX400_.jpg"},
+                        "directors": {
+                            "L": [{"S": "Ron Howard"}]
+                        },
+                        "rating": {"N": "8.3"},
+                        "rank": {"N": "2"},
+                        "running_time_secs": {"N": "7380"}
+                    }
+                }
+            }]
+        }
+    },
+    "Scan FewMovies w/ Filter + Projection": {
+        "request": {
+            "TableName": "FewMovies",
+            "ProjectionExpression": "title, #Y, info.rating",
+            "FilterExpression": "contains(info.actors, :actor)",
+            "ExpressionAttributeNames": {"#Y": "year"},
+            "ExpressionAttributeValues": {
+                ":actor": {"S": "Chris Hemsworth"}
+            },
+            "ReturnConsumedCapacity": "NONE"
+        },
+        "response": {
+            "Count": 1,
+            "ScannedCount": 2,
+            "Items": [{
+                "year": {"N": "2013"},
+                "title": {"S": "Rush"},
+                "info": {
+                    "M": {
+                        "rating": {"N": "8.3"}
+                    }
+                }
+            }]
+        }
+    },
+    "Scan FewMovies Index": {
+        "request": {
+            "TableName": "FewMovies",
+            "IndexName": "ExampleLSI",
+            "ReturnConsumedCapacity": "NONE"
+        },
+        "response": {
+            "Count": 2,
+            "ScannedCount": 2,
+            "Items": [{
+                "year": {"N": "2013"},
+                "title": {"S": "Prisoners"},
+                "info": {
+                    "M": {
+                        "actors": {
+                            "L": [
+                                {"S": "Hugh Jackman"},
+                                {"S": "Jake Gyllenhaal"},
+                                {"S": "Viola Davis"}
+                            ]
+                        },
+                        "release_date": {"S": "2013-08-30T00:00:00Z"},
+                        "plot": {"S": "When Keller Dover's daughter and her friend go missing, he takes matters into his own hands as the police pursue multiple leads and the pressure mounts. But just how far will this desperate father go to protect his family?"},
+                        "genres": {
+                            "L": [
+                                {"S": "Crime"},
+                                {"S": "Drama"},
+                                {"S": "Thriller"}
+                            ]
+                        },
+                        "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX400_.jpg"},
+                        "directors": {
+                            "L": [{"S": "Denis Villeneuve"}]
+                        },
+                        "rating": {"N": "8.2"},
+                        "rank": {"N": "3"},
+                        "running_time_secs": {"N": "9180"}
+                    }
+                }
+            },{
+                "year": {"N": "2013"},
+                "title": {"S": "Rush"},
+                "info": {
+                    "M": {
+                        "actors": {
+                            "L": [
+                                {"S": "Daniel Bruhl"},
+                                {"S": "Chris Hemsworth"},
+                                {"S": "Olivia Wilde"}
+                            ]
+                        },
+                        "release_date": {"S": "2013-09-02T00:00:00Z"},
+                        "plot": {"S": "A re-creation of the merciless 1970s rivalry between Formula One rivals James Hunt and Niki Lauda."},
+                        "genres": {
+                            "L": [
+                                {"S": "Action"},
+                                {"S": "Biography"},
+                                {"S": "Drama"},
+                                {"S": "Sport"}
+                            ]
+                        },
+                        "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTQyMDE0MTY0OV5BMl5BanBnXkFtZTcwMjI2OTI0OQ@@._V1_SX400_.jpg"},
+                        "directors": {
+                            "L": [{"S": "Ron Howard"}]
+                        },
+                        "rating": {"N": "8.3"},
+                        "rank": {"N": "2"},
+                        "running_time_secs": {"N": "7380"}
+                    }
+                }
+            }]
+        }
+    },
+    "Scan FewMovies All Pages By Index": {
+        "calls": [{
+            "request": {
+                "TableName": "FewMovies",
+                "IndexName": "ExampleLSI",
+                "Limit": 1,
+                "ReturnConsumedCapacity": "NONE"
+            },
+            "response": {
+                "Count": 1,
+                "ScannedCount": 1,
+                "Items": [{
+                    "year": {"N": "2013"},
+                    "title": {"S": "Prisoners"},
+                    "info": {
+                        "M": {
+                            "actors": {
+                                "L": [
+                                    {"S": "Hugh Jackman"},
+                                    {"S": "Jake Gyllenhaal"},
+                                    {"S": "Viola Davis"}
+                                ]
+                            },
+                            "release_date": {"S": "2013-08-30T00:00:00Z"},
+                            "plot": {"S": "When Keller Dover's daughter and her friend go missing, he takes matters into his own hands as the police pursue multiple leads and the pressure mounts. But just how far will this desperate father go to protect his family?"},
+                            "genres": {
+                                "L": [
+                                    {"S": "Crime"},
+                                    {"S": "Drama"},
+                                    {"S": "Thriller"}
+                                ]
+                            },
+                            "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTg0NTIzMjQ1NV5BMl5BanBnXkFtZTcwNDc3MzM5OQ@@._V1_SX400_.jpg"},
+                            "directors": {
+                                "L": [{"S": "Denis Villeneuve"}]
+                            },
+                            "rating": {"N": "8.2"},
+                            "rank": {"N": "3"},
+                            "running_time_secs": {"N": "9180"}
+                        }
+                    }
+                }],
+                "LastEvaluatedKey": {
+                    "year": {"N": "2013"},
+                    "title": {"S": "Prisoners"}
+                }
+            }
+        },{
+            "request": {
+                "TableName": "FewMovies",
+                "IndexName": "ExampleLSI",
+                "Limit": 1,
+                "ReturnConsumedCapacity": "NONE",
+                "ExclusiveStartKey": {
+                    "year": {"N": "2013"},
+                    "title": {"S": "Prisoners"}
+                }
+            },
+            "response": {
+                "Count": 1,
+                "ScannedCount": 1,
+                "LastEvaluatedKey": {
+                    "year": {"N": "2013"},
+                    "title": {"S": "Rush"}
+                },
+                "Items": [{
+                    "year": {"N": "2013"},
+                    "title": {"S": "Rush"},
+                    "info": {
+                        "M": {
+                            "actors": {
+                                "L": [
+                                    {"S": "Daniel Bruhl"},
+                                    {"S": "Chris Hemsworth"},
+                                    {"S": "Olivia Wilde"}
+                                ]
+                            },
+                            "release_date": {"S": "2013-09-02T00:00:00Z"},
+                            "plot": {"S": "A re-creation of the merciless 1970s rivalry between Formula One rivals James Hunt and Niki Lauda."},
+                            "genres": {
+                                "L": [
+                                    {"S": "Action"},
+                                    {"S": "Biography"},
+                                    {"S": "Drama"},
+                                    {"S": "Sport"}
+                                ]
+                            },
+                            "image_url": {"S": "http://ia.media-imdb.com/images/M/MV5BMTQyMDE0MTY0OV5BMl5BanBnXkFtZTcwMjI2OTI0OQ@@._V1_SX400_.jpg"},
+                            "directors": {
+                                "L": [{"S": "Ron Howard"}]
+                            },
+                            "rating": {"N": "8.3"},
+                            "rank": {"N": "2"},
+                            "running_time_secs": {"N": "7380"}
+                        }
+                    }
+                }]
+            }
+        }]
+    },
+    "Scan FewMovies Select Count": {
+        "request": {
+            "TableName": "FewMovies",
+            "Select": "COUNT",
+            "ReturnConsumedCapacity": "NONE"
+        },
+        "response": {
+            "Count": 2,
+            "ScannedCount": 2
+        }
+    },
+    "Scan Movies Select Count": {
+        "__skip__": "ddblocal",
+        "calls": [{
+            "request": {
+                "TableName": "Movies",
+                "Select": "COUNT",
+                "Limit": 2000,
+                "ReturnConsumedCapacity": "NONE"
+            },
+            "response": {
+                "Count": 2000,
+                "ScannedCount": 2000,
+                "LastEvaluatedKey": {
+                    "title": {"S": "Inception"},
+                    "year": {"N": "2010"}
+                }
+            }
+        },
+        {
+            "request": {
+                "TableName": "Movies",
+                "Select": "COUNT",
+                "Limit": 2000,
+                "ExclusiveStartKey": {
+                    "title": {"S": "Incendies"},
+                    "year": {"N": "2010"}
+                },
+                "ReturnConsumedCapacity": "NONE"
+            },
+            "response": {
+                "Count": 2000,
+                "ScannedCount": 2000,
+                "LastEvaluatedKey": {
+                    "title": {"S": "Prozac Nation"},
+                    "year": {"N": "2001"}
+                }
+            }
+        },
+        {
+            "request": {
+                "TableName": "Movies",
+                "Select": "COUNT",
+                "Limit": 2000,
+                "ExclusiveStartKey": {
+                    "title": {"S": "Prozac Nation"},
+                    "year": {"N": "2001"}
+                },
+                "ReturnConsumedCapacity": "NONE"
+            },
+            "response": {
+                "Count": 607,
+                "ScannedCount": 607
+            }
+        }]
+    }
+}
+
