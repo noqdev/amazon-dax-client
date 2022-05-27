@@ -25,7 +25,7 @@ from botocore.exceptions import PartialCredentialsError
 from botocore.hooks import first_non_none_response
 from .Constants import PY_TO_OP_NAME
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("amazondax")
 
 
 class AmazonDaxClient(object):

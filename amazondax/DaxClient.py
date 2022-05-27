@@ -22,7 +22,7 @@ from copy import deepcopy
 
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("amazondax")
 
 
 class Request(dict):

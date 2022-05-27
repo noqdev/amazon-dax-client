@@ -23,7 +23,7 @@ from .DaxError import DaxClientError, DaxErrorCode, DaxValidationError
 from .Router import SCHEMES_TO_DEFAULT_PORTS, EndpointRouter
 
 import logging
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("amazondax")
 
 class Cluster(object):
     def __init__(self, region_name, discovery_endpoints, credentials, user_agent=None, user_agent_extra=None, connect_timeout=None,

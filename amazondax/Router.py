@@ -26,7 +26,7 @@ from .DaxError import DaxClientError, DaxServiceError, DaxErrorCode, DaxValidati
 from .Assemblers import ENDPOINT_FIELDS
 
 import logging
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("amazondax")
 
 SCHEMES_TO_DEFAULT_PORTS = { 'dax': 8111, 'daxs': 9111 }
 

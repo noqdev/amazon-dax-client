@@ -16,7 +16,7 @@ import random
 import time
 
 import logging
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("amazondax")
 
 # TODO There should be one of these per-process, and it should handle multiple tasks. That way there's only one thread.
 class PeriodicTask(threading.Thread):

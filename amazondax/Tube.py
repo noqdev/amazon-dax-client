@@ -28,7 +28,7 @@ from .Constants import STRING_TYPES, BINARY_TYPES, INTEGRAL_TYPES, SEQ_TYPES
 from .DaxError import DaxValidationError, DaxErrorCode
 
 import logging
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("amazondax")
 
 class Tube(object):
     MAGIC_STRING = b'gJ7yne5G'
